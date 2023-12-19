@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
+    <title>Click Me</title>
     <style>
         body {
             background-color: #000;
@@ -14,158 +13,81 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow: hidden;
             justify-content: center;
             height: 100vh;
-            scrollbar-width: thin;
-            scroll-behavior: smooth
-        }
-        
-        h2 {
-            font-size: 20px;
-            margin-top: 250px;
-            margin-bottom: 10px;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            height: 100%;
-            position: relative;
-            /* Add the following lines for hover effect */
-            color: #fff; /* Default text color */
-            transition: color 0.5s ease, text-shadow 0.3s ease, font-size 0.3s ease; /* Faster but smooth transition effects */
+            transition: background-color 1s ease; /* Add a transition for background-color */
         }
 
-        h2:hover {
-            color: #6b6bee;
-            text-shadow: 0 0 10px #6b6bee, 0 0 20px #6b6bee, 0 0 30px #6b6bee; /* Glow effect */
-            font-size: 20.5px; /* Increase font size when hovered */
-        }
-
-        #texts {
-            margin-top: 8px;
-            line-height: 1.2;
-            font-weight: 400;
-            font-size: 16px;
-            max-width: 500px;
-            word-wrap: break-word;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-            position: relative; /* Add this line */
-        }
-
-        #texts::before {
+        body::before {
             content: "";
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000080 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #800000 100%);
             pointer-events: none;
             z-index: -1;
-            opacity: 0.5; /* Initial opacity */
-            animation: breathe 2.5s infinite alternate; /* 5 seconds for one breath, alternate for a breathing effect */
+            opacity: 0.5;
+            animation: breathe 2.5s infinite alternate;
         }
 
         @keyframes breathe {
             from {
-                opacity: 0.5; /* Start opacity */
+                opacity: 0.5;
             }
             to {
-                opacity: 0.2; /* End opacity */
+                opacity: 0.2;
             }
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
+        body.fade-out {
+            background-color: #fff; /* Set the background color to white during the fade-out */
         }
 
-        ::-webkit-scrollbar-thumb {
-            background-color: #fff;
-            border-radius: 5px;
+        h1.hidden {
+            display: none; /* Hide the text when the 'hidden' class is applied */
         }
 
-        ::-webkit-scrollbar-track {
-            background-color: transparent;
+        h1 {
+            font-size: 30px;
+            color: #fff; /* Default text color */
+            opacity: 0; /* Set initial opacity to 0 for fade-in effect */
+            transition: opacity 1s ease, color 0.5s ease, text-shadow 0.3s ease, font-size 0.3s ease; /* Add opacity transition */
+        }
+
+        h1:hover {
+            color: #ec4848;
+            text-shadow: 0 0 10px #ec4848, 0 0 20px #ec4848, 0 0 30px #ec4848; /* Glow effect */
+            font-size: 30.5px; /* Increase font size when hovered */
+        }
+
+        body.loaded h1 {
+            opacity: 1; /* Set opacity to 1 when the body has the 'loaded' class */
         }
     </style>
-</head>
-
-<body>
-    <h2>My Custom Title</h2>
-
-    <div id="texts">
-        Uyyyy, alam mo, medyo mahaba nga 'tong message na 'to. So it's your choice kung gusto mong basahin o hindi pero sana oo HAHAHAHAHA.<br>
-        <br>
-        Marami akong gustong sabihin, gaya ng feelings ko o ng mga nararamdaman ko sa'yo these past weeks. Parang kahapon lang, even though almost 1 month na tayong nag-uusap, kasi parang I enjoyed every last moment and interaction natin. Time flies by, 'no?<br>
-        <br>
-        Everyday. Daily by daily, mas lalo ko nararamdaman 'yung connection natin, parang unti-unti na akong na-co-comfortable sa 'yo. Ikaw lang 'yung nakakakita ng ganitong side ko. Parang ikaw lang yung nakakakita ng totoong ako. Wala lang, na-coconfused lang ako kasi hindi ko alam kung paano mo ginagawa, pero kapag kasama kita, parang nawawala 'yung kaba ko, at naiiba 'yung pakiramdam ng puso ko.<br>
-        <br>
-        Sobrang sarap ng ganitong feeling, na mayroong isang tao na kayang gawing mas magaan at masaya 'yung buong mundo ko. Gusto ko lang sanang malaman mo kung gaano kalaking parte ka na ng araw-araw ko. Sana hindi masyadong nakakatamad basahin 'to, pero gusto ko lang maging honest sa nararamdaman ko. Minsan lang ito, ’di ba?<br>
-        <br>
-        Ever since day 1, it was all a coincidence, parang ang mismong universe ung nag-plano para magtagpo tayo HAHAHAHAHAHA. Lagi kitang nakikita sa page ko sa FB with your dump account and medyo nakakatawa ung posts mo and I love that humor. Alam mo yung tipong hindi lang cute, pero may certain charm din sa smartness at saka ’yung medyo sporty na vibe and hindi rin mawawala ’yung fun side mo. And, to be honest, it adds up to the reasons why every moment with you feels so special. Parang kahit simpleng usapan lang, may certain magic na dala. You’ve got this way of turning ordinary moments into extraordinary ones, and I genuinely appreciate that about you.<br>
-        <br>
-        Everyday. yung mga goodmornings at goodnights natin, kasama na ang mga eatwells at iba pa, sobrang lalim ng kahulugan sa akin. Walang araw na hindi ko masasabi sayo ito kasi, kahit yung mga simpleng interactions natin tulad nito, sobrang big deal sa akin. Hindi mo lang alam kung gaano kahalaga yung bawat maliit na moment na ito para sa akin, pero it truly means a lot. Sobrang grateful ako sa bawat pagkakataon na magkasama tayo.<br>
-        <br>
-        Throughout these past few weeks, sobrang dami kong natutunan sa'yo. Feeling ko, lagi akong nasa detective mode kapag kasama kita HAHAHAHA, kasi lagi akong may mga tanong tungkol sa'yo. Hindi para maging creepy, pero gusto ko lang talaga kilalanin ka nang mas mabuti. Sobrang saya lang kapag nakakakuha ako ng insights tungkol sa'yo, at sobrang grateful ako sa mga moments na iyon.<br>
-        <br>
-        Marami akong gustong sabihin, pero baka magtagal tayo dito kung lahat i-mention ko. Pero gusto ko lang sanang malaman mo, marami akong gusto sabihin na hindi nasasabi araw-araw. Maybe someday, ma-share ko lahat, pero for now, let’s enjoy and cherish the moments we have.
-        <br><br><br><br><br><br><br><br>
-    </div>
     <script>
-        function setTabTitle(title) {
-            var index = 0;
-            var interval = 300;
-            var titleLength = title.length;
-            var deleteInterval = 500;
-            var blinkInterval = 100;
-            var isTyping = true;
-    
-            function type() {
-                document.title = title.substring(0, index) + (index % 2 === 0 ? "│" : "‎ ");
-                index++;
-    
-                if (index <= titleLength && isTyping) {
-                    setTimeout(type, interval);
-                } else {
-                    setTimeout(deleteText, deleteInterval);
-                }
+        document.addEventListener('DOMContentLoaded', function () {
+            function fadeOutAndRedirect(event) {
+                event.preventDefault(); 
+                document.querySelector('h1').classList.add('hidden');
+                document.body.classList.add('fade-out');
+                setTimeout(function () {
+                    window.location.href = 'message.html';
+                }, 1000); // Adjust the time to match the transition duration
             }
-    
-            function deleteText() {
-                document.title = title.substring(0, index) + (index % 2 === 0 ? "│" : "‎ ");
-                index--;
-    
-                if (index >= 0 && !isTyping) {
-                    setTimeout(deleteText, interval);
-                } else {
-                    isTyping = !isTyping;
-                    setTimeout(type, deleteInterval);
-                }
-            }
-    
-            function blinkCursor() {
-                if (isTyping || index > 0) {
-                    document.title = title.substring(0, index) + (index % 2 === 0 ? "│" : "");
-                    setTimeout(blinkCursor, blinkInterval);
-                } else {
-                    // If not typing or deleting, show the cursor without blinking
-                    document.title = title.substring(0, index) + "│";
-                }
-            }
-    
-            type();
-            blinkCursor();
-        }
-    
-        function setTabIcon(iconPath) {
-            document.getElementById('customIcon').href = iconPath;
-        }
-    
-        setTabTitle('my isaiah');
-        setTabIcon('https://tinyurl.com/heartforisaiah');
-    </script>    
+
+            document.addEventListener('click', fadeOutAndRedirect);
+
+            // Add 'loaded' class to the body after a short delay to trigger the fade-in effect
+            setTimeout(function () {
+                document.body.classList.add('loaded');
+            }, 100); // Adjust the time based on your preference
+        });
+    </script>
+</head>
+<body>
+    <h1>Click me!</h1>
 </body>
 </html>
