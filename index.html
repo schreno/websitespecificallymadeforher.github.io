@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,39 +16,70 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            /* Define scrollbar styles for webkit browsers (Chrome, Safari) */
             scrollbar-width: thin;
+            scroll-behavior: smooth
+        }
+        
+        h2 {
+            font-size: 20px;
+            margin-top: 250px;
+            margin-bottom: 10px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            position: relative;
+            /* Add the following lines for hover effect */
+            color: #fff; /* Default text color */
+            transition: color 0.5s ease, text-shadow 0.3s ease, font-size 0.3s ease; /* Faster but smooth transition effects */
         }
 
-        h2 {
-    font-size: 20px;
-    margin-top: 50px; /* Adjust the margin-top value */
-    margin-bottom: 10px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
+        h2:hover {
+            color: #6b6bee;
+            text-shadow: 0 0 10px #6b6bee, 0 0 20px #6b6bee, 0 0 30px #6b6bee; /* Glow effect */
+            font-size: 20.5px; /* Increase font size when hovered */
+        }
 
-#texts {
-    margin-top: 20px; /* Adjust the margin-top value */
-    margin-bottom: 20px; /* Add margin-bottom for spacing */
-    line-height: 1.2;
-    font-weight: 400;
-    font-size: 16px;
-    max-width: 500px;
-    word-wrap: break-word;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-}
+        #texts {
+            margin-top: 8px;
+            line-height: 1.2;
+            font-weight: 400;
+            font-size: 16px;
+            max-width: 500px;
+            word-wrap: break-word;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            position: relative; /* Add this line */
+        }
 
+        #texts::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000080 100%);
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.5; /* Initial opacity */
+            animation: breathe 2.5s infinite alternate; /* 5 seconds for one breath, alternate for a breathing effect */
+        }
 
+        @keyframes breathe {
+            from {
+                opacity: 0.5; /* Start opacity */
+            }
+            to {
+                opacity: 0.2; /* End opacity */
+            }
+        }
 
         ::-webkit-scrollbar {
-            width: 6px; /* Adjust the width to make the entire scrollbar thinner */
+            width: 6px;
         }
 
         ::-webkit-scrollbar-thumb {
@@ -65,7 +97,7 @@
     <h2>My Custom Title</h2>
 
     <div id="texts">
-        uyyyy, alam mo, medyo mahaba nga 'tong message na 'to. So it's your choice kung gusto mong basahin o hindi pero sana oo HAHAHAHAHA.<br>
+        Uyyyy, alam mo, medyo mahaba nga 'tong message na 'to. So it's your choice kung gusto mong basahin o hindi pero sana oo HAHAHAHAHA.<br>
         <br>
         Marami akong gustong sabihin, gaya ng feelings ko o ng mga nararamdaman ko sa'yo these past weeks. Parang kahapon lang, even though almost 1 month na tayong nag-uusap, kasi parang I enjoyed every last moment and interaction natin. Time flies by, 'no?<br>
         <br>
@@ -79,21 +111,61 @@
         <br>
         Throughout these past few weeks, sobrang dami kong natutunan sa'yo. Feeling ko, lagi akong nasa detective mode kapag kasama kita HAHAHAHA, kasi lagi akong may mga tanong tungkol sa'yo. Hindi para maging creepy, pero gusto ko lang talaga kilalanin ka nang mas mabuti. Sobrang saya lang kapag nakakakuha ako ng insights tungkol sa'yo, at sobrang grateful ako sa mga moments na iyon.<br>
         <br>
-        Marami akong gustong sabihin, pero baka magtagal tayo dito kung lahat i-mention ko. Pero gusto ko lang sanang malaman mo, marami akong gusto sabihin na hindi nasasabi araw-araw. Maybe someday, ma-share ko lahat, pero for now, let’s enjoy and cherish the moments we have.<br>
+        Marami akong gustong sabihin, pero baka magtagal tayo dito kung lahat i-mention ko. Pero gusto ko lang sanang malaman mo, marami akong gusto sabihin na hindi nasasabi araw-araw. Maybe someday, ma-share ko lahat, pero for now, let’s enjoy and cherish the moments we have.
+        <br><br><br><br><br><br><br><br>
     </div>
-
     <script>
         function setTabTitle(title) {
-            document.title = title;
+            var index = 0;
+            var interval = 300;
+            var titleLength = title.length;
+            var deleteInterval = 500;
+            var blinkInterval = 100;
+            var isTyping = true;
+    
+            function type() {
+                document.title = title.substring(0, index) + (index % 2 === 0 ? "│" : "‎ ");
+                index++;
+    
+                if (index <= titleLength && isTyping) {
+                    setTimeout(type, interval);
+                } else {
+                    setTimeout(deleteText, deleteInterval);
+                }
+            }
+    
+            function deleteText() {
+                document.title = title.substring(0, index) + (index % 2 === 0 ? "│" : "‎ ");
+                index--;
+    
+                if (index >= 0 && !isTyping) {
+                    setTimeout(deleteText, interval);
+                } else {
+                    isTyping = !isTyping;
+                    setTimeout(type, deleteInterval);
+                }
+            }
+    
+            function blinkCursor() {
+                if (isTyping || index > 0) {
+                    document.title = title.substring(0, index) + (index % 2 === 0 ? "│" : "");
+                    setTimeout(blinkCursor, blinkInterval);
+                } else {
+                    // If not typing or deleting, show the cursor without blinking
+                    document.title = title.substring(0, index) + "│";
+                }
+            }
+    
+            type();
+            blinkCursor();
         }
-
+    
         function setTabIcon(iconPath) {
             document.getElementById('customIcon').href = iconPath;
         }
-
-        setTabTitle('My Isaiah');
+    
+        setTabTitle('my isaiah');
         setTabIcon('https://tinyurl.com/heartforisaiah');
-        
-    </script>
+    </script>    
 </body>
 </html>
